@@ -19,12 +19,12 @@ app.post("/notify-error", async (req, res) => {
     },
   });
 
-  const mailOptions = {
-    from: \`"Gerätekataster Fehler" <\${process.env.GMX_USER}>\`,
-    to: process.env.RECIPIENT,
-    subject: "Fehler beim Gerätekataster",
-    text: \`Fehlermeldung:\n\n\${message}\n\nZeit: \${timestamp}\`,
-  };
+ const msg = {
+  to: process.env.RECIPIENT,
+  from: `"Gerätekataster Fehler" <${process.env.GMX_USER}>`,
+  subject: "Fehlermeldung im Gerätekataster",
+  text: `Es ist ein Fehler aufgetreten: ${errorMessage}`,
+};
 
   try {
     await transporter.sendMail(mailOptions);
