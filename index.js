@@ -14,7 +14,9 @@ app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
 
 const transporter = nodemailer.createTransport({
-  service: "gmx",
+  host: "mail.gmx.net",
+  port: 587,
+  secure: false, // TLS wird über STARTTLS aktiviert
   auth: {
     user: process.env.GMX_USER,
     pass: process.env.GMX_PASS,
